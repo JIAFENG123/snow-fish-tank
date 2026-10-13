@@ -1,0 +1,6 @@
+services:
+  - type: static_site
+    name: snow-fish-tank
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    autoDeploy: true

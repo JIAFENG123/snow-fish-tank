@@ -1,0 +1,16 @@
+{
+  "name": "snow-fish-tank",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "model": "\"C:\\Program Files\\Blender Foundation\\Blender 5.2\\blender.exe\" -b --factory-startup -P blender/make_scene.py -- --glb public/scene.glb"
+  },
+  "dependencies": {
+    "three": "^0.186.0",
+    "vite": "^8.3.0"
+  }
+}

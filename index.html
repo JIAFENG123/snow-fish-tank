@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Three.js + Blender 雪地孔雀鱼缸</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: #0d1015; }
+    #app { width: 100%; height: 100%; display: block; touch-action: none; }
+    #vignette {
+      position: fixed; inset: 0; z-index: 5; pointer-events: none;
+      background: radial-gradient(ellipse at 50% 42%, transparent 50%, rgba(3, 5, 9, 0.55) 100%);
+    }
+    .hud {
+      position: fixed; top: 16px; left: 16px; z-index: 10;
+      color: #cfd8e3; font: 13px/1.7 "SF Mono", Consolas, monospace;
+      background: rgba(13, 17, 23, 0.72); backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px;
+      padding: 14px 18px; max-width: 340px; user-select: none;
+    }
+    .hud h1 { font-size: 15px; color: #fff; margin-bottom: 6px; font-weight: 600; }
+    .stats { display: flex; gap: 8px; margin: 8px 0; }
+    .stats span {
+      flex: 1; text-align: center; background: rgba(255, 255, 255, 0.06);
+      border-radius: 5px; padding: 4px 0; font-size: 12px; color: #8a97a8;
+    }
+    .stats span b { display: block; color: #7fd0ff; font-size: 15px; }
+    .hud ul { list-style: none; margin-top: 6px; font-size: 12px; color: #8a97a8; }
+    .hud li { margin-top: 2px; }
+    .hud kbd {
+      color: #e6edf3; background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 3px;
+      padding: 0 5px; font-family: inherit;
+    }
+    #status {
+      position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
+      color: #8a97a8; font: 14px Consolas, monospace; z-index: 20; pointer-events: none;
+    }
+    .brand {
+      position: fixed; right: 16px; bottom: 12px; z-index: 10;
+      color: #4a5568; font: 11px Consolas, monospace; user-select: none;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="app"></canvas>
+  <div id="vignette"></div>
+  <div id="status">正在加载雪地布景…</div>
+  <div class="hud">
+    <h1>Blender × Three.js 雪地孔雀鱼缸</h1>
+    <div class="stats">
+      <span>孔雀鱼<b id="fishN">0</b></span>
+      <span>已喂食<b id="foodN">0</b></span>
+      <span>飘雪<b id="snowState">开</b></span>
+    </div>
+    <ul>
+      <li><kbd>点击缸内水面</kbd> 撒鱼食（鱼会抢食）</li>
+      <li><kbd>拖动</kbd> 旋转视角　<kbd>滚轮</kbd> 缩放</li>
+      <li><kbd>Space</kbd> 开关飘雪　<kbd>R</kbd> 复位视角</li>
+      <li><kbd>M</kbd> 开关音乐　<kbd>滚轮+Shift</kbd> 音量</li>
+    </ul>
+    <div style="display:flex;align-items:center;gap:8px;margin-top:8px">
+      <button id="musicBtn" style="
+        background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);
+        border-radius:5px;color:#7fd0ff;font:12px inherit;padding:3px 10px;cursor:pointer;
+      ">♫ 音乐:关</button>
+      <input id="volSlider" type="range" min="0" max="100" value="45"
+        style="flex:1;height:4px;accent-color:#7fd0ff;cursor:pointer">
+    </div>
+  </div>
+  <div class="brand">model: blender/make_scene.py → public/scene.glb</div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
